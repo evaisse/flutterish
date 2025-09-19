@@ -1,0 +1,102 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.0'
+        channel: 'stable'
+        
+    - name: Enable web support
+      run: flutter config --enable-web
+      
+    - name: Get dependencies
+      run: |
+        cd example
+        flutter pub get
+        
+    - name: Build web app with WASM
+      run: |
+        cd example
+        flutter build web --wasm --base-href="/flutterish/" --release
+        
+    - name: Create deployment package
+      run: |
+        cd example/build/web
+        # Create a simple index file for pockethost.io
+        echo '<!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Flutterish Demo</title>
+        </head>
+        <body>
+          <script>
+            // Redirect to the Flutter app
+            window.location.href = "/flutterish/";
+          </script>
+          <p>Redirecting to <a href="/flutterish/">Flutterish Demo</a>...</p>
+        </body>
+        </html>' > ../../../index.html
+        
+        # Create deployment info
+        echo "Production deployment: $(date)" > deployment-info.txt
+        echo "Commit: ${{ github.sha }}" >> deployment-info.txt
+        echo "Branch: ${{ github.ref_name }}" >> deployment-info.txt
+        
+    - name: Deploy to PocketHost.io
+      env:
+        DEPLOY_URL: ${{ secrets.POCKETHOST_PRODUCTION_URL }}
+        DEPLOY_TOKEN: ${{ secrets.POCKETHOST_PRODUCTION_TOKEN }}
+      run: |
+        cd example
+        
+        # Create a deployment script
+        cat > deploy.sh << 'EOF'
+        #!/bin/bash
+        
+        # This is a placeholder deployment script for pockethost.io
+        # Replace this with actual pockethost.io deployment commands
+        
+        echo "Deploying to production: flutterish.pockethost.io"
+        echo "Build directory: $(pwd)/build/web"
+        
+        # Example deployment using rsync or curl
+        # You'll need to replace this with actual pockethost.io API calls
+        if [ -n "$DEPLOY_URL" ] && [ -n "$DEPLOY_TOKEN" ]; then
+          echo "Deployment credentials configured"
+          # curl -X POST "$DEPLOY_URL" -H "Authorization: Bearer $DEPLOY_TOKEN" -F "files=@build/web.tar.gz"
+        else
+          echo "Warning: Deployment credentials not configured"
+          echo "Set POCKETHOST_PRODUCTION_URL and POCKETHOST_PRODUCTION_TOKEN secrets"
+        fi
+        
+        # For now, just list the built files
+        echo "Built files:"
+        find build/web -name "*.js" -o -name "*.wasm" -o -name "*.html" | head -10
+        EOF
+        
+        chmod +x deploy.sh
+        ./deploy.sh
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-web-production
+        path: |
+          example/build/web/
+          example/deployment-info.txt
+        retention-days: 30
