@@ -29,3 +29,8 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 /build/
 /coverage/
+
+# Deployment artifacts
+**/build/web/
+**/build/deployment-package.tar.gz
+deployment-info.txt

@@ -1,68 +1,82 @@
 # Flutterish
 
-A comprehensive Flutter UI kit providing a complete collection of customizable widgets and components for building beautiful, accessible, and responsive Flutter applications.
+Flutterish is a collection of re-usable Flutter widgets, designed to be lightweight with minimal dependencies.
 
-## 🏗️ Project Structure
+## Components
 
-This project uses a **monorepo workspace structure** to organize code efficiently:
+### Stepper
 
+A customizable stepper component that guides users through multi-step processes.
+
+#### Features
+
+- **Vertical and Horizontal Layouts**: Choose between vertical or horizontal step progression
+- **Customizable Step States**: Support for indexed, complete, error, disabled, and editing states
+- **Accessibility First**: Built-in screen reader support and keyboard navigation
+- **Themeable**: Extensive theming support through `StepperTheme`
+- **Interactive**: Optional step tapping with callback support
+
+#### Basic Usage
+
+```dart
+import 'package:flutterish/flutterish.dart';
+
+FlutterishStepper(
+  steps: [
+    StepperStep(
+      title: Text('Account Setup'),
+      subtitle: Text('Create your account'),
+      content: Text('Fill in your account details...'),
+    ),
+    StepperStep(
+      title: Text('Profile'),
+      subtitle: Text('Personal information'),
+      state: StepState.complete,
+    ),
+    StepperStep(
+      title: Text('Verification'),
+      subtitle: Text('Verify your email'),
+      state: StepState.error,
+    ),
+  ],
+  currentStep: 0,
+  onStepTapped: (step) {
+    // Handle step navigation
+  },
+)
 ```
-flutterish/
-├── packages/                    # Individual UI component packages
-│   └── flutterish_sandbox/     # Core UI components package
-├── example/                     # Multi-platform demo application
-├── lib/                        # Meta-package exports
-└── test/                       # Main package tests
+
+#### Theming
+
+Customize the appearance using `StepperTheme`:
+
+```dart
+StepperTheme(
+  data: StepperThemeData(
+    activeStepColor: Colors.blue,
+    completeStepColor: Colors.green,
+    errorStepColor: Colors.red,
+    iconSize: 28.0,
+    elevation: 4.0,
+  ),
+  child: FlutterishStepper(
+    // ... your stepper configuration
+  ),
+)
 ```
 
-### Packages
+#### Accessibility
 
-- **Main Package** (`/`): Meta-package that re-exports all UI components
-- **Component Packages** (`/packages/*`): Individual packages containing specific UI components
-- **Demo App** (`/example`): Multi-platform demonstration application
+The stepper component includes:
 
-## 🚀 Demo Application
+- Semantic labels for screen readers
+- Keyboard navigation support
+- Focus management
+- State announcements (completed, error, etc.)
 
-The `/example` directory contains a **multi-platform Flutter application** that showcases all available widgets and their capabilities across:
+## Installation
 
-- 📱 **Mobile** (iOS & Android)
-- 🖥️ **Desktop** (Windows, macOS, Linux)
-- 🌐 **Web**
-
-The demo app serves as both documentation and testing ground for the entire UI kit.
-
-## 🧪 Testing Strategy
-
-### Golden Testing
-
-This project emphasizes **extensive UI testing** using Flutter's golden testing framework, with a focus on:
-
-- **Mobile Viewports**: Primary testing target for responsive design
-- **Visual Regression**: Ensuring UI consistency across updates
-- **Cross-Platform Compatibility**: Testing widgets across different platforms
-- **Accessibility**: Ensuring proper semantics and screen reader support
-
-Golden tests capture widget snapshots and compare them against reference images to catch visual regressions automatically.
-
-### Test Structure
-
-- Unit tests for component logic
-- Widget tests for UI behavior
-- Golden tests for visual consistency
-- Integration tests in the demo app
-
-## 🎨 Features
-
-- **Complete UI Kit**: Comprehensive collection of Flutter widgets
-- **Accessibility First**: Built with accessibility in mind using Semantics widgets
-- **Theme Extensions**: Configurable widgets using Flutter theme extensions
-- **Mobile-Optimized**: Clean, small UI elements optimized for mobile viewports
-- **Cross-Platform**: Compatible with all Flutter-supported platforms
-- **Minimal Dependencies**: Designed to minimize external dependencies
-
-## 📦 Installation
-
-Add this to your package's `pubspec.yaml` file:
+Add flutterish to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
@@ -107,6 +121,7 @@ flutter run
 ```
 
 Choose your target platform:
+
 - `flutter run -d chrome` for web
 - `flutter run -d macos` for macOS
 - `flutter run -d ios` for iOS simulator
@@ -138,4 +153,16 @@ This project is licensed under the terms specified in the LICENSE file.
 
 - [Flutter Documentation](https://flutter.dev/docs)
 - [Flutter Accessibility Guide](https://flutter.dev/docs/development/accessibility-and-semantics)
-- [Golden Testing in Flutter](https://flutter.dev/docs/testing/unit-testing#golden-file-testing)
+- # [Golden Testing in Flutter](https://flutter.dev/docs/testing/unit-testing#golden-file-testing)
+
+## Example
+
+Check out the [example app](example/) for a complete demonstration of the stepper component.
+
+## Contributing
+
+Contributions are welcome! Please read our contributing guidelines and submit pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

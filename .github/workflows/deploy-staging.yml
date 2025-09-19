@@ -1,0 +1,125 @@
+---
+name: Deploy Staging
+
+"on":
+  push:
+    branches: [staging]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+
+      - name: Enable web support
+        run: flutter config --enable-web
+
+      - name: Get dependencies
+        run: |
+          cd example
+          flutter pub get
+
+      - name: Build web app with WASM
+        run: |
+          cd example
+          flutter build web --wasm \
+            --base-href="/flutterish-staging/" --release
+
+      - name: Create deployment package
+        run: |
+          cd example/build/web
+          # Create a simple index file for pockethost.io
+          echo '<!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Flutterish Demo - Staging</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 40px; }
+              .staging-banner {
+                background: #ff6b35;
+                color: white;
+                padding: 10px;
+                text-align: center;
+                margin-bottom: 20px;
+                border-radius: 4px;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="staging-banner">
+              🚧 STAGING ENVIRONMENT 🚧
+            </div>
+            <script>
+              // Redirect to the Flutter app
+              window.location.href = "/flutterish-staging/";
+            </script>
+            <p>Redirecting to
+              <a href="/flutterish-staging/">Flutterish Demo (Staging)</a>...
+            </p>
+          </body>
+          </html>' > ../../../index.html
+
+          # Create deployment info
+          echo "Staging deployment: $(date)" > deployment-info.txt
+          echo "Commit: ${{ github.sha }}" >> deployment-info.txt
+          echo "Branch: ${{ github.ref_name }}" >> deployment-info.txt
+          echo "Environment: STAGING" >> deployment-info.txt
+
+      - name: Deploy to PocketHost.io Staging
+        env:
+          DEPLOY_URL: ${{ secrets.POCKETHOST_STAGING_URL }}
+          DEPLOY_TOKEN: ${{ secrets.POCKETHOST_STAGING_TOKEN }}
+        run: |
+          cd example
+
+          # Create a deployment script
+          cat > deploy.sh << 'EOF'
+          #!/bin/bash
+
+          # This is a placeholder deployment script for pockethost.io staging
+          # Replace this with actual pockethost.io deployment commands
+
+          echo "Deploying to staging: flutterish-staging.pockethost.io"
+          echo "Build directory: $(pwd)/build/web"
+
+          # Example deployment using rsync or curl
+          # You'll need to replace this with actual pockethost.io API calls
+          if [ -n "$DEPLOY_URL" ] && [ -n "$DEPLOY_TOKEN" ]; then
+            echo "Staging deployment credentials configured"
+            # curl -X POST "$DEPLOY_URL" \
+            #   -H "Authorization: Bearer $DEPLOY_TOKEN" \
+            #   -F "files=@build/web.tar.gz"
+          else
+            echo "Warning: Staging deployment credentials not configured"
+            echo "Set POCKETHOST_STAGING_URL and " \
+                 "POCKETHOST_STAGING_TOKEN secrets"
+          fi
+
+          # For now, just list the built files
+          echo "Built files:"
+          find build/web -name "*.js" -o -name "*.wasm" -o -name "*.html" \
+            | head -10
+          EOF
+
+          chmod +x deploy.sh
+          ./deploy.sh
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: flutter-web-staging
+          path: |
+            example/build/web/
+            example/deployment-info.txt
+          retention-days: 15

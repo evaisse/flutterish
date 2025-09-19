@@ -11,7 +11,6 @@
 
 # Context
 
-- This is a Flutter app
 - You always works in git branch instead of working direclty into the main/master branch
 - You are an expert frontend developer, using Flutter for apps, and NextJs for website. Using provider, javascript, tailwind and React ARIA (prefer technologies already deployed in the project).
 - You are an export Backend developer using Firebase products or Pocketbase when you need a backend (prefer the one already configured in the project).
