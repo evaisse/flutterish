@@ -1,54 +1,55 @@
+---
 name: Build and Test
 
-on:
+"on":
   push:
-    branches: [ main, master, staging ]
+    branches: [main, master, staging]
   pull_request:
-    branches: [ main, master, staging ]
+    branches: [main, master, staging]
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.24.0'
-        channel: 'stable'
-        
-    - name: Enable web support
-      run: flutter config --enable-web
-      
-    - name: Get dependencies - main package
-      run: flutter pub get
-      
-    - name: Get dependencies - example
-      run: |
-        cd example
-        flutter pub get
-        
-    - name: Analyze main package
-      run: flutter analyze
-      
-    - name: Analyze example
-      run: |
-        cd example
-        flutter analyze
-        
-    - name: Test main package
-      run: flutter test
-      
-    - name: Test example
-      run: |
-        cd example
-        flutter test
-        
-    - name: Build web (verify WASM build works)
-      run: |
-        cd example
-        flutter build web --wasm --release
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+
+      - name: Enable web support
+        run: flutter config --enable-web
+
+      - name: Get dependencies - main package
+        run: flutter pub get
+
+      - name: Get dependencies - example
+        run: |
+          cd example
+          flutter pub get
+
+      - name: Analyze main package
+        run: flutter analyze
+
+      - name: Analyze example
+        run: |
+          cd example
+          flutter analyze
+
+      - name: Test main package
+        run: flutter test
+
+      - name: Test example
+        run: |
+          cd example
+          flutter test
+
+      - name: Build web (verify WASM build works)
+        run: |
+          cd example
+          flutter build web --wasm --release
