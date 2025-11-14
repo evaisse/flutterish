@@ -1,7 +1,7 @@
 ---
 name: Deploy Example to GitHub Pages
 
-"on":
+'on':
   release:
     types: [published]
   workflow_dispatch:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          flutter-version: '3.35.5'
           channel: 'stable'
 
       - name: Enable web support
