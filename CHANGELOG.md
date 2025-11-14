@@ -1,3 +1,13 @@
+## 0.0.2
+
+### Added
+- Account setup story widget reused across demo and catalog
+- Widgetbook catalog showcasing the account setup flow
+- GitHub Pages workflow to publish demo and widgetbook on release
+
+### Changed
+- Example demo reorganized around the reusable setup story
+
 ## 0.0.1
 
 ### Added

@@ -1,4 +1,4 @@
-library flutterish;
+library;
 
 // Stepper components
 export 'src/stepper/stepper.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide StepState, StepperType;
 import 'stepper_step.dart';
 import 'stepper_theme.dart';
 
@@ -197,7 +197,6 @@ class _FlutterishStepperState extends State<FlutterishStepper> {
         iconChild = const Icon(Icons.edit, size: 16);
         break;
       case StepState.indexed:
-      default:
         backgroundColor = isActive 
             ? (theme.activeStepColor ?? Theme.of(context).primaryColor)
             : (theme.inactiveStepColor ?? Colors.grey.shade300);

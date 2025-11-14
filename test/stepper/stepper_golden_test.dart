@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide StepState, StepperType;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutterish/flutterish.dart';
 
@@ -44,7 +44,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             backgroundColor: Colors.white,
-            body: Container(
+            body: SizedBox(
               width: 400,
               height: 600,
               child: FlutterishStepper(
@@ -91,7 +91,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             backgroundColor: Colors.white,
-            body: Container(
+            body: SizedBox(
               width: 600,
               height: 200,
               child: FlutterishStepper(
@@ -135,7 +135,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             backgroundColor: Colors.white,
-            body: Container(
+            body: SizedBox(
               width: 400,
               height: 500,
               child: StepperTheme(
