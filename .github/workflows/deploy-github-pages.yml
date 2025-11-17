@@ -70,3 +70,15 @@ jobs:
           name: github-pages
           path: example/build/web
           retention-days: 7
+
+      - name: Display deployment URLs
+        run: |
+          echo "🎉 Deployment successful!"
+          echo ""
+          echo "📱 Main App URL:"
+          echo "   https://evaisse.github.io/flutterish/"
+          echo ""
+          echo "📚 Widgetbook URL:"
+          echo "   https://evaisse.github.io/flutterish/widgetbook/"
+          echo ""
+          echo "ℹ️  Note: It may take a few minutes for GitHub Pages to update."
