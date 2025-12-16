@@ -40,8 +40,8 @@ cd example && flutter analyze
 # Run all tests
 flutter test
 
-# Run golden tests
-flutter test test/golden/
+# Run golden tests (searches for tests with 'golden' in the name)
+flutter test --name golden
 
 # Update golden files
 flutter test --update-goldens
@@ -111,8 +111,9 @@ cd example && flutter run -d ios        # iOS
 
 4. **Test Organization**:
    - Place tests in `test/` directory mirroring `lib/` structure
-   - Golden tests go in `test/golden/`
+   - Golden tests are co-located with other tests (e.g., `test/stepper/stepper_golden_test.dart`)
    - Use descriptive test names and groups
+   - Name golden tests with `_golden_test.dart` suffix for easy identification
 
 ### Documentation
 
@@ -196,7 +197,8 @@ flutterish/
 │       └── [other components]/
 ├── test/
 │   ├── stepper/                  # Stepper tests
-│   ├── golden/                   # Golden tests
+│   │   ├── stepper_widget_test.dart   # Widget tests
+│   │   └── stepper_golden_test.dart   # Golden tests
 │   └── flutterish_test.dart      # Main test file
 ├── example/                      # Example app
 ├── doc/                          # Documentation
