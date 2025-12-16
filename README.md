@@ -137,6 +137,28 @@ flutter test --update-goldens  # Update golden files
 flutter test test/golden/      # Run golden tests only
 ```
 
+## 🎯 Component Roadmap
+
+We're building a comprehensive component library inspired by popular UI frameworks. Check our [GitHub Issues](https://github.com/evaisse/flutterish/issues) for the full list of planned components from:
+
+- Material UI (MUI)
+- Framework7
+
+### Generating Component Issues
+
+To automatically create GitHub issues for components from MUI and Framework7:
+
+```bash
+cd scripts/component-scraper
+npm install
+npm run scrape
+npm run create-issues
+```
+
+See [scripts/component-scraper/README.md](scripts/component-scraper/README.md) for detailed instructions.
+
+You can also use the GitHub Actions workflow "Create Component Issues" to automate this process.
+
 ## 🤝 Contributing
 
 1. Follow the project conventions outlined in `AGENTS.md`

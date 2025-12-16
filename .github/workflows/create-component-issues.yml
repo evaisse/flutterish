@@ -1,0 +1,100 @@
+name: Create Component Issues
+
+# This workflow scrapes UI components from MUI and Framework7
+# and creates GitHub issues for each component
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (preview without creating issues)'
+        required: false
+        type: boolean
+        default: true
+      sources:
+        description: 'Sources to scrape (mui, framework7, or both)'
+        required: false
+        type: choice
+        options:
+          - both
+          - mui
+          - framework7
+        default: both
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: scripts/component-scraper/package.json
+      
+      - name: Install dependencies
+        working-directory: scripts/component-scraper
+        run: |
+          npm install
+          npx playwright install chromium
+      
+      - name: Scrape components
+        working-directory: scripts/component-scraper
+        run: npm run scrape
+      
+      - name: Upload components data
+        uses: actions/upload-artifact@v4
+        with:
+          name: components-data
+          path: scripts/component-scraper/components.json
+          retention-days: 30
+      
+      - name: Create GitHub issues (dry run)
+        if: ${{ inputs.dry_run == true }}
+        working-directory: scripts/component-scraper
+        env:
+          DRY_RUN: 'true'
+        run: npm run create-issues
+      
+      - name: Create GitHub issues
+        if: ${{ inputs.dry_run == false }}
+        working-directory: scripts/component-scraper
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run create-issues
+      
+      - name: Summary
+        run: |
+          echo "## Component Issues Creation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f scripts/component-scraper/components.json ]; then
+            TOTAL=$(jq '.totalComponents' scripts/component-scraper/components.json)
+            MUI=$(jq '.sources.mui' scripts/component-scraper/components.json)
+            F7=$(jq '.sources.framework7' scripts/component-scraper/components.json)
+            
+            echo "### Components Found" >> $GITHUB_STEP_SUMMARY
+            echo "- **Total**: $TOTAL" >> $GITHUB_STEP_SUMMARY
+            echo "- **MUI**: $MUI" >> $GITHUB_STEP_SUMMARY
+            echo "- **Framework7**: $F7" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
+            if [ "${{ inputs.dry_run }}" == "true" ]; then
+              echo "🔍 **Dry run mode** - No issues were created" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "To create issues, run this workflow again with dry_run=false" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "✅ Issues created successfully!" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "View issues: [GitHub Issues](https://github.com/${{ github.repository }}/issues)" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "❌ Error: components.json not found" >> $GITHUB_STEP_SUMMARY
+          fi

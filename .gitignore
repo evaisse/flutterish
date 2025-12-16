@@ -34,3 +34,8 @@ migrate_working_dir/
 **/build/web/
 **/build/deployment-package.tar.gz
 deployment-info.txt
+
+# Component scraper
+scripts/component-scraper/node_modules/
+scripts/component-scraper/components.json
+scripts/component-scraper/package-lock.json
