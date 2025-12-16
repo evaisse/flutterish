@@ -1,9 +1,9 @@
 {
   "generatedAt": "2025-12-16T23:22:00.000Z",
-  "totalComponents": 20,
+  "totalComponents": 60,
   "sources": {
-    "mui": 10,
-    "framework7": 10
+    "mui": 30,
+    "framework7": 30
   },
   "components": [
     {
@@ -143,6 +143,286 @@
       "name": "List",
       "slug": "list",
       "url": "https://framework7.io/docs/list-view.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Drawer",
+      "slug": "drawer",
+      "url": "https://mui.com/material-ui/react-drawer/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Menu",
+      "slug": "menu",
+      "url": "https://mui.com/material-ui/react-menu/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Pagination",
+      "slug": "pagination",
+      "url": "https://mui.com/material-ui/react-pagination/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Progress",
+      "slug": "progress",
+      "url": "https://mui.com/material-ui/react-progress/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Radio",
+      "slug": "radio",
+      "url": "https://mui.com/material-ui/react-radio-button/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Rating",
+      "slug": "rating",
+      "url": "https://mui.com/material-ui/react-rating/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Select",
+      "slug": "select",
+      "url": "https://mui.com/material-ui/react-select/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Skeleton",
+      "slug": "skeleton",
+      "url": "https://mui.com/material-ui/react-skeleton/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Slider",
+      "slug": "slider",
+      "url": "https://mui.com/material-ui/react-slider/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Snackbar",
+      "slug": "snackbar",
+      "url": "https://mui.com/material-ui/react-snackbar/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Tabs",
+      "slug": "tabs",
+      "url": "https://mui.com/material-ui/react-tabs/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Text Field",
+      "slug": "text-field",
+      "url": "https://mui.com/material-ui/react-text-field/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Toggle Button",
+      "slug": "toggle-button",
+      "url": "https://mui.com/material-ui/react-toggle-button/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Tooltip",
+      "slug": "tooltip",
+      "url": "https://mui.com/material-ui/react-tooltip/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "App Bar",
+      "slug": "app-bar",
+      "url": "https://mui.com/material-ui/react-app-bar/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Bottom Navigation",
+      "slug": "bottom-navigation",
+      "url": "https://mui.com/material-ui/react-bottom-navigation/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Breadcrumbs",
+      "slug": "breadcrumbs",
+      "url": "https://mui.com/material-ui/react-breadcrumbs/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Link",
+      "slug": "link",
+      "url": "https://mui.com/material-ui/react-link/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Speed Dial",
+      "slug": "speed-dial",
+      "url": "https://mui.com/material-ui/react-speed-dial/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Table",
+      "slug": "table",
+      "url": "https://mui.com/material-ui/react-table/",
+      "category": "MUI Component",
+      "source": "mui"
+    },
+    {
+      "name": "Popup",
+      "slug": "popup",
+      "url": "https://framework7.io/docs/popup.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Popover",
+      "slug": "popover",
+      "url": "https://framework7.io/docs/popover.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Sheet Modal",
+      "slug": "sheet-modal",
+      "url": "https://framework7.io/docs/sheet-modal.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Toast",
+      "slug": "toast",
+      "url": "https://framework7.io/docs/toast.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Preloader",
+      "slug": "preloader",
+      "url": "https://framework7.io/docs/preloader.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Progress Bar",
+      "slug": "progressbar",
+      "url": "https://framework7.io/docs/progressbar.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Swiper",
+      "slug": "swiper",
+      "url": "https://framework7.io/docs/swiper.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Photo Browser",
+      "slug": "photo-browser",
+      "url": "https://framework7.io/docs/photo-browser.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Notification",
+      "slug": "notification",
+      "url": "https://framework7.io/docs/notification.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Navbar",
+      "slug": "navbar",
+      "url": "https://framework7.io/docs/navbar.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Toolbar",
+      "slug": "toolbar",
+      "url": "https://framework7.io/docs/toolbar-tabbar.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Searchbar",
+      "slug": "searchbar",
+      "url": "https://framework7.io/docs/searchbar.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Messages",
+      "slug": "messages",
+      "url": "https://framework7.io/docs/messages.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Messagebar",
+      "slug": "messagebar",
+      "url": "https://framework7.io/docs/messagebar.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Swipeout",
+      "slug": "swipeout",
+      "url": "https://framework7.io/docs/swipeout.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Data Table",
+      "slug": "data-table",
+      "url": "https://framework7.io/docs/data-table.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Pull to Refresh",
+      "slug": "pull-to-refresh",
+      "url": "https://framework7.io/docs/pull-to-refresh.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Infinite Scroll",
+      "slug": "infinite-scroll",
+      "url": "https://framework7.io/docs/infinite-scroll.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Stepper",
+      "slug": "stepper-f7",
+      "url": "https://framework7.io/docs/stepper.html",
+      "category": "Framework7 Component",
+      "source": "framework7"
+    },
+    {
+      "name": "Range Slider",
+      "slug": "range-slider",
+      "url": "https://framework7.io/docs/range-slider.html",
       "category": "Framework7 Component",
       "source": "framework7"
     }
