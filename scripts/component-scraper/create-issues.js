@@ -65,7 +65,10 @@ This component should be implemented following the patterns established in the e
 
   try {
     // Create the issue using gh CLI
-    const command = `gh issue create --title "${title.replace(/"/g, '\\"')}" --body "${body.replace(/"/g, '\\"')}" --label "${LABEL},${source}"`;
+    // Properly escape strings for shell command
+    const escapeShell = (str) => str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\$/g, '\\$').replace(/`/g, '\\`');
+    
+    const command = `gh issue create --title "${escapeShell(title)}" --body "${escapeShell(body)}" --label "${LABEL},${source}"`;
     
     const result = execSync(command, {
       encoding: 'utf8',

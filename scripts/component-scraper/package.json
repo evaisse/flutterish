@@ -9,8 +9,6 @@
     "create-issues": "node create-issues.js"
   },
   "dependencies": {
-    "axios": "^1.6.0",
-    "cheerio": "^1.0.0-rc.12",
     "playwright": "^1.40.0"
   }
 }
