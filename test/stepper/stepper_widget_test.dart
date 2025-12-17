@@ -128,8 +128,13 @@ void main() {
       // Widget should render without errors with custom theme
       expect(find.text('Step 1'), findsOneWidget);
       
-      // Find the Material widget to check elevation
-      final material = tester.widget<Material>(find.byType(Material).first);
+      // Find the Material widget within the FlutterishStepper to check elevation
+      final material = tester.widget<Material>(
+        find.descendant(
+          of: find.byType(FlutterishStepper),
+          matching: find.byType(Material),
+        ),
+      );
       expect(material.elevation, equals(4.0));
     });
 
@@ -194,17 +199,17 @@ void main() {
         ),
       );
 
-      // Check semantics for completed step
+      // Check semantics for completed step (has check icon, not text)
       expect(
-        tester.getSemantics(find.text('1').first),
+        tester.getSemantics(find.byIcon(Icons.check)),
         matchesSemantics(
           label: 'Step 1, completed',
         ),
       );
 
-      // Check semantics for error step
+      // Check semantics for error step (has close icon, not text)
       expect(
-        tester.getSemantics(find.text('2').first),
+        tester.getSemantics(find.byIcon(Icons.close)),
         matchesSemantics(
           label: 'Step 2, has error',
         ),
