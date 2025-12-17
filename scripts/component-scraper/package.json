@@ -1,0 +1,14 @@
+{
+  "name": "component-scraper",
+  "version": "1.0.0",
+  "description": "Scraper for MUI and Framework7 components",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "scrape": "node scrape-components.js",
+    "create-issues": "node create-issues.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
