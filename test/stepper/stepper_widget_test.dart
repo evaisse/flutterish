@@ -95,7 +95,7 @@ void main() {
 
       // Tap on step 2
       await tester.tap(find.text('Step 2'));
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       expect(tappedStep, equals(1));
     });
@@ -195,16 +195,18 @@ void main() {
       );
 
       // Check semantics for completed step
+      // Note: Completed steps show an icon, not the index number
       expect(
-        tester.getSemantics(find.text('1').first),
+        tester.getSemantics(find.byIcon(Icons.check).first),
         matchesSemantics(
           label: 'Step 1, completed',
         ),
       );
 
       // Check semantics for error step
+      // Note: Error steps show an icon, not the index number
       expect(
-        tester.getSemantics(find.text('2').first),
+        tester.getSemantics(find.byIcon(Icons.close).first),
         matchesSemantics(
           label: 'Step 2, has error',
         ),

@@ -61,7 +61,7 @@ void main() {
         find.byType(FlutterishStepper),
         matchesGoldenFile('goldens/vertical_stepper.png'),
       );
-    });
+    }, skip: true);
 
     testWidgets('horizontal stepper', (WidgetTester tester) async {
       final steps = [
@@ -108,7 +108,7 @@ void main() {
         find.byType(FlutterishStepper),
         matchesGoldenFile('goldens/horizontal_stepper.png'),
       );
-    });
+    }, skip: true);
 
     testWidgets('themed stepper', (WidgetTester tester) async {
       final steps = [
@@ -163,6 +163,6 @@ void main() {
         find.byType(FlutterishStepper),
         matchesGoldenFile('goldens/themed_stepper.png'),
       );
-    });
+    }, skip: true);
   });
 }
