@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 
 /// Theme data for customizing the appearance of stepper widgets.
@@ -124,12 +126,12 @@ class StepperThemeData {
       activeStepTitleStyle: TextStyle.lerp(a?.activeStepTitleStyle, b?.activeStepTitleStyle, t),
       inactiveStepTitleStyle: TextStyle.lerp(a?.inactiveStepTitleStyle, b?.inactiveStepTitleStyle, t),
       stepSubtitleStyle: TextStyle.lerp(a?.stepSubtitleStyle, b?.stepSubtitleStyle, t),
-      iconSize: lerpDouble(a?.iconSize, b?.iconSize, t) ?? 24.0,
-      connectorHeight: lerpDouble(a?.connectorHeight, b?.connectorHeight, t) ?? 24.0,
+      iconSize: ui.lerpDouble(a?.iconSize, b?.iconSize, t) ?? 24.0,
+      connectorHeight: ui.lerpDouble(a?.connectorHeight, b?.connectorHeight, t) ?? 24.0,
       stepPadding: EdgeInsets.lerp(a?.stepPadding, b?.stepPadding, t) ?? const EdgeInsets.all(8.0),
-      iconSpacing: lerpDouble(a?.iconSpacing, b?.iconSpacing, t) ?? 12.0,
+      iconSpacing: ui.lerpDouble(a?.iconSpacing, b?.iconSpacing, t) ?? 12.0,
       margin: EdgeInsets.lerp(a?.margin, b?.margin, t),
-      elevation: lerpDouble(a?.elevation, b?.elevation, t) ?? 0.0,
+      elevation: ui.lerpDouble(a?.elevation, b?.elevation, t) ?? 0.0,
     );
   }
 
@@ -206,14 +208,4 @@ class StepperTheme extends InheritedTheme {
   Widget wrap(BuildContext context, Widget child) {
     return StepperTheme(data: data, child: child);
   }
-}
-
-/// Import helper for lerpDouble
-double? lerpDouble(double? a, double? b, double t) {
-  if (a == b || (a?.isNaN == true) && (b?.isNaN == true)) {
-    return a;
-  }
-  a ??= 0.0;
-  b ??= 0.0;
-  return a * (1.0 - t) + b * t;
 }
