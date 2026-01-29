@@ -1,0 +1,18 @@
+targets:
+  $default:
+    builders:
+      riverpod_generator:
+        options:
+          keep_alive: true
+      json_serializable:
+        options:
+          explicit_to_json: true
+    sources:
+      - lib/**
+      - test/**
+      - example/lib/**
+      - "!example/linux/**"
+      - "!example/windows/**"
+      - "!example/macos/**"
+      - "!example/ios/**"
+      - "!example/android/**"
