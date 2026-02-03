@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart' hide StepState, StepperType;
+import 'package:flutter/semantics.dart'; // Import for SemanticsFlag/SemanticsAction
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutterish/flutterish.dart';
 
@@ -129,7 +130,12 @@ void main() {
       expect(find.text('Step 1'), findsOneWidget);
       
       // Find the Material widget to check elevation
-      final material = tester.widget<Material>(find.byType(Material).first);
+      // Skip the first Material (likely from Scaffold) and find the one that wraps the stepper
+      final materialFinder = find.descendant(
+        of: find.byType(FlutterishStepper),
+        matching: find.byType(Material),
+      );
+      final material = tester.widget<Material>(materialFinder);
       expect(material.elevation, equals(4.0));
     });
 
@@ -195,20 +201,29 @@ void main() {
       );
 
       // Check semantics for completed step
-      expect(
-        tester.getSemantics(find.text('1').first),
-        matchesSemantics(
-          label: 'Step 1, completed',
-        ),
-      );
+      // The semantics are wrapped around the container, not directly on the text
+      // We need to find the semantics node that contains the label
+      // Note: matchesSemantics checks if the finder matches the semantics, so we use find.bySemanticsLabel
+      // However, to get semantics, we might need to find the widget first.
+      // But getSemantics takes a Finder.
+      // If find.bySemanticsLabel fails, it means the label isn't there.
+      // Let's verify the label construction in the widget: 'Step ${index + 1}${step.state == StepState.complete ? ', completed' : ''}...'
 
-      // Check semantics for error step
-      expect(
-        tester.getSemantics(find.text('2').first),
-        matchesSemantics(
-          label: 'Step 2, has error',
-        ),
-      );
+      // The InkWell merges its semantics with children.
+      // The label becomes "Step 1, completed\nStep 1" because both the container semantics and the text child are present.
+      // InkWell adds isFocusable and focus action.
+
+      final node1 = tester.getSemantics(find.bySemanticsLabel(RegExp(r'Step 1, completed')));
+      expect(node1.label, contains('Step 1, completed'));
+      expect(node1.hasFlag(SemanticsFlag.isButton), isTrue);
+      expect(node1.hasFlag(SemanticsFlag.isSelected), isTrue);
+      expect(node1.getSemanticsData().hasAction(SemanticsAction.tap), isTrue);
+
+      final node2 = tester.getSemantics(find.bySemanticsLabel(RegExp(r'Step 2, has error')));
+      expect(node2.label, contains('Step 2, has error'));
+      expect(node2.hasFlag(SemanticsFlag.isButton), isTrue);
+      expect(node2.hasFlag(SemanticsFlag.isSelected), isFalse);
+      expect(node2.getSemanticsData().hasAction(SemanticsAction.tap), isTrue);
     });
 
     testWidgets('handles empty steps list gracefully', (WidgetTester tester) async {
