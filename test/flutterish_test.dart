@@ -128,8 +128,9 @@ void main() {
     });
 
     test('StepperStep equality works correctly', () {
-      const step1 = StepperStep(title: Text('Step'));
-      const step2 = StepperStep(title: Text('Step'));
+      const title = Text('Step');
+      const step1 = StepperStep(title: title);
+      const step2 = StepperStep(title: title);
       const step3 = StepperStep(title: Text('Different'));
 
       expect(step1, equals(step2));

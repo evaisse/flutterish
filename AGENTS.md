@@ -9,6 +9,15 @@
 - ALWAYS consider whether the code needs refactoring given the latest request. Maybe there is code that is not used anymore. If it does, refactor the code to be more efficient and maintainable. Spaghetti code is your enemy.
 - ALWAYS be generous with golden testing and code documentation
 
+# Testing & Submission Requirements
+
+- **Strict Testing Rule**: Before submitting any changes, you MUST run:
+  1. `flutter test` (in the root directory)
+  2. `flutter test` (in the `example/` directory)
+  3. `flutter test` (in any other package directories)
+- You MUST ensure **0 errors** in all tests.
+- You MUST run `flutter analyze` and resolve all issues.
+
 # Context
 
 - You always works in git branch instead of working direclty into the main/master branch
