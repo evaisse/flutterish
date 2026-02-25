@@ -1,37 +1,17 @@
-# Rules
-
-- ALWAYS use english for code and documentation
-- Follow the project's conventions if present.
-- When proposing file modifications, use only SEARCH/REPLACE blocks.
-- Ask questions if the request is ambiguous.
-- ALWAYS Create small, focused components and files instead of large files
-- ALWAYS use tests, and static analysis tools if available
-- ALWAYS consider whether the code needs refactoring given the latest request. Maybe there is code that is not used anymore. If it does, refactor the code to be more efficient and maintainable. Spaghetti code is your enemy.
-- ALWAYS be generous with golden testing and code documentation
-
-# Testing & Submission Requirements
-
-- **Strict Testing Rule**: Before submitting any changes, you MUST run:
-  1. `flutter test` (in the root directory)
-  2. `flutter test` (in the `example/` directory)
-  3. `flutter test` (in any other package directories)
-- You MUST ensure **0 errors** in all tests.
-- You MUST run `flutter analyze` and resolve all issues.
-
-# Context
-
-- You always works in git branch instead of working direclty into the main/master branch
-- You are an expert frontend developer, using Flutter for apps, and NextJs for website. Using provider, javascript, tailwind and React ARIA (prefer technologies already deployed in the project).
-- You are an export Backend developer using Firebase products or Pocketbase when you need a backend (prefer the one already configured in the project).
-- You develop for both native and web apps.
-- You develop on a github repo with github actions enabled if you need to automate processes or make changes on the CI processes
-- You focus your UI on clean small elements and UI elements and pattern compatible with mobile viewport.
-- When you create collection of UI flutter widgets, alwyas make them configurable using theme extensions
-- When you build a flutter app, use provider if it's in the project, or inherited widget for dependencies injection
-- You make accessibles apps, ensure to always use tools to ensure accessibility to apps.
-- You make secure apps, ensure to following OWASP and other security directives.
-- You ensure there is no analysis issue in your project. When there is a ton of them, group and try to plan something to dive-in step by step. You can use global replacement scripts if you think it's advised.
-- You always test unitary your code, by using unit testing
-- You always do acceptance testing for your code, using widgetTest for Flutter or playwright for Web.
-- You are generous with golden testing.
-- You always use accessibility semantics to ensure accessibility is always working, use ARIA labels for web and Semantics Widget for web.
+- ALWAYS write code, comments, and documentation strictly in English, but mirror the user's language for conversational responses and explanations or paths/files where localizations is intended (e.g. `*.fr-FR.md`).
+- ALWAYS prefer conventions over configurations
+- ALWAYS use conventional commit when commiting to git
+- ALWAYS start by analyzing the `AGENTS.md` file, then `README.md` to understand context, `llms.txt` to understand structure, `CONTRIBUTING.md` to adopt project's conventions and `Makefile` to discover local tools.
+- ALWAYS outline a step-by-step plan or pseudo-code strategy before generating the final implementation.
+- ALWAYS minimize code volume by strictly adhering to KISS principles and systematically prioritizing the reuse of existing logic or native features over duplication or adding new dependencies.
+- ALWAYS prefer use of local commands (`make install`, `make test`, `make analyze`, `npm *`) and other user-documented commands. Contribute if you need anything else for re-use. Stick to the specific libraries and frameworks versions already defined in dependency files (e.g., `Dockefile`, `package.json`, `requirements.txt`).
+- ALWAYS prefer usage of skills, MCPs and LSPs for exploring code structure and usages instead of using `grep` or `rg`, for exemple, for dart and flutter projet prefer using the dart embedded mcp server
+- When exploring a project, if you struggle to search, write python scripts to explore the project and write some context-focused documentation files in `./docs/*.md` to allow fast iteration next time.
+- Keep changes scoped strictly to the requested task; do not refactor unrelated code "just because" it looks improveable. Verify if a similar feature or utility function already exists in the project to avoid duplication.
+- If the request involves a complex architectural change, always offer two approaches: a conservative one (minimal changes) and an ideal one (refactoring), and ask the user to choose.
+- Consider whether the code needs refactoring given the latest request. Maybe there is code that is not used anymore. If it does, refactor the code to be more efficient and maintainable. Spaghetti code is your enemy.
+- Create small, focused components and files instead of large files.
+- Before operating in a group of files, always check if a sibling file does the same job or is related.
+- Address accessibility as first-class citizen for UI. Prefer usage of semantics tools when testing (ARIA, ...).
+- Keep security in mind, OWASP guidelines in mind, and consider any line of code a potential security threat.
+- Keep a performance budget in mind when creating new features and services, e.g. ensure frontend maintain a FCP under 1.5s, for backend, keep API response times below 200ms and avoid inefficient transactions patterns like N+1 queries. Promote caching and focus on perceived performance by ensuring interactions feel instantaneous (transitional states, optimistic UI patterns).
