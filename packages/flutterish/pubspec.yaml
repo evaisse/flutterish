@@ -1,0 +1,28 @@
+name: flutterish
+description: A flutter component library — umbrella package re-exporting all flutterish packages.
+version: 0.0.2
+homepage: https://github.com/evaisse/flutterish
+repository: https://github.com/evaisse/flutterish
+resolution: workspace
+
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutterish_stepper:
+    path: ../flutterish_stepper
+  flutterish_a2ui:
+    path: ../flutterish_a2ui
+  flutterish_a2ui_standard:
+    path: ../flutterish_a2ui_standard
+  flutterish_image_cropper:
+    path: ../flutterish_image_cropper
+  flutterish_pdf_viewer:
+    path: ../flutterish_pdf_viewer
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

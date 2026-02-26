@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' hide StepState, StepperType;
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutterish/flutterish.dart';
-import 'package:flutterish_dmeo/stories/account_setup_stepper.dart';
+import 'package:flutterish_demo/stories/account_setup_stepper.dart';
 
 void main() {
   testWidgets('renders account setup story content', (WidgetTester tester) async {

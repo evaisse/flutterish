@@ -1,16 +1,17 @@
-name: flutterish_dmeo
-description: 'A flutter project .'
-publish_to: 'none'
+name: flutterish_demo
+description: Demo application for the flutterish component library.
+publish_to: none
 version: 0.1.0
+resolution: workspace
 
 environment:
-  sdk: ^3.9.0
+  sdk: ^3.10.0
 
 dependencies:
   flutter:
     sdk: flutter
   flutterish:
-    path: ../
+    path: ../packages/flutterish
   widgetbook: ^3.7.1
 
 dev_dependencies:

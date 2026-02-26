@@ -39,3 +39,6 @@ deployment-info.txt
 scripts/component-scraper/node_modules/
 scripts/component-scraper/components.json
 scripts/component-scraper/package-lock.json
+
+# Package build artifacts
+packages/**/build/

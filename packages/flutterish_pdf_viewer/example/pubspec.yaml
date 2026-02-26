@@ -1,0 +1,22 @@
+name: flutterish_pdf_viewer_example
+description: Example app for flutterish_pdf_viewer
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: ^3.10.0
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutterish_pdf_viewer:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
