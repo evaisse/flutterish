@@ -3,6 +3,8 @@ import 'package:flutterish/flutterish.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 import 'stories/account_setup_stepper.dart';
+import 'stories/image_cropper_story.dart';
+import 'stories/pdf_viewer_story.dart';
 
 void main() {
   runApp(const FlutterishWidgetbook());
@@ -41,6 +43,24 @@ class FlutterishWidgetbook extends StatelessWidget {
                       ),
                     ),
                   ),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'Image Cropper',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Default',
+                  builder: (context) => const ImageCropperStory(),
+                ),
+              ],
+            ),
+            WidgetbookComponent(
+              name: 'PDF Viewer',
+              useCases: [
+                WidgetbookUseCase(
+                  name: 'Remote URL',
+                  builder: (context) => const PdfViewerStory(),
                 ),
               ],
             ),

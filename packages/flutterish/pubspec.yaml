@@ -21,6 +21,8 @@ dependencies:
     path: ../flutterish_image_cropper
   flutterish_pdf_viewer:
     path: ../flutterish_pdf_viewer
+  flutterish_core:
+    path: ../flutterish_core
 
 dev_dependencies:
   flutter_test:

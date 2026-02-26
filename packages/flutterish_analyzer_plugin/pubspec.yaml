@@ -1,0 +1,18 @@
+name: flutterish_analyzer_plugin
+description: Analyzer plugin for the flutterish project.
+version: 0.0.1
+homepage: https://github.com/evaisse/flutterish/tree/main/packages/flutterish_analyzer_plugin
+repository: https://github.com/evaisse/flutterish
+resolution: workspace
+
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  analyzer: ^6.0.0
+  analyzer_plugin: ^0.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

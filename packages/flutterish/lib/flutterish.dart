@@ -14,3 +14,6 @@ export 'package:flutterish_image_cropper/flutterish_image_cropper.dart';
 
 // PDF Viewer
 export 'package:flutterish_pdf_viewer/flutterish_pdf_viewer.dart';
+
+// Core
+export 'package:flutterish_core/flutterish_core.dart';

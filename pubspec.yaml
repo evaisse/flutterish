@@ -11,4 +11,6 @@ workspace:
   - packages/flutterish_a2ui_standard
   - packages/flutterish_image_cropper
   - packages/flutterish_pdf_viewer
+  - packages/flutterish_core
+  - packages/flutterish_analyzer_plugin
   - example
